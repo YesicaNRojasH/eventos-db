@@ -8,3 +8,5 @@ COPY init-db.* ./
 
 RUN chmod +x ./init-db.sh
 RUN /opt/mssql/bin/sqlservr & ./init-db.sh
+
+EXPOSE 1433
