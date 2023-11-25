@@ -18,3 +18,17 @@ INSERT INTO Events (Title, Detail, [Date], CreatedAt, UpdatedAt) VALUES
 (N'Docker on Windows', N'From 101 to production', '2018-01-01', GETDATE(), GETDATE());
 GO
 SELECT * FROM BulletinBoard.dbo.Events;
+
+
+-- Enable remote connections
+EXEC sp_configure 'remote access', 1;
+RECONFIGURE;
+
+-- Allow remote connections to the default SQL Server instance
+EXEC sp_configure 'remote access', 1;
+RECONFIGURE;
+
+-- Enable the SQL Server Browser service to allow named instances to be resolved
+EXEC xp_instance_regwrite 'HKEY_LOCAL_MACHINE', 'Software\Microsoft\MSSQLServer\MSSQLServer', 'AllowRemoteConnections', REG_DWORD, 1;
+
+GO
